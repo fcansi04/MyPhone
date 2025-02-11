@@ -1,47 +1,86 @@
 "use client";
-
+import Filter from "./Filter";
+import ProductProvider from "./ProductProvider";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Product from "@/models/product";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const Feed = () => {
-  const [products, setProducts] = useState([]);
+  const seachParams = useSearchParams();
 
+  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await fetch("/api/product");
       const data = await response.json();
+      const n = data.length;
+
+      for (let i = 0; i < Math.floor(n / 2); i++) {
+        const prev = data[i];
+        data[i] = data[n - i - 1];
+        data[n - i - 1] = prev;
+      }
       setProducts(data);
+      setAllProducts(data);
     };
     fetchProduct();
   }, []);
 
+  const handleSingleProduct = async (e) => {
+    const productid = e.currentTarget.getAttribute("product_id");
+    const response = await fetch(`/api/singleProduct/${productid}`);
+    const data = await response.json();
+
+    router.push(
+      `/singlePage/${productid}/product?data=${JSON.stringify(data)}`
+    );
+  };
+
   return (
-    <div className="w-full justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 mt-36">
-      {products.map((product) => {
-        return (
-          <div
-            key={product._id}
-            className="w-[240px]  rounded-lg h-[460px] flex flex-col items-start justify-center border-[1px] border-gray "
-          >
-            {" "}
-            <div className="w-full bg-white h-[72%]">
-              <Image
-                width={150}
-                height={100}
-                alt="image-product"
-                src={product.image}
-                className="w-full rounded-lg"
-              ></Image>
+    <div className="flex gap-40 mt-52">
+      <Filter
+        products={products}
+        allProducts={allProducts}
+        setAllProducts={setAllProducts}
+        setProducts={setProducts}
+        className="w-[120px]  "
+      ></Filter>
+      <div className="justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-10  gap-y-16 ">
+        {products.map((product) => {
+          return (
+            <div
+              key={product._id}
+              product_id={product._id}
+              className=" relative w-[280px]  rounded-lg h-[380px] flex flex-col items-start justify-start  "
+              onClick={handleSingleProduct}
+            >
+              {" "}
+              <button className="absolute w-20 h-20">
+                <span className="material-symbols-outlined">favorite</span>
+              </button>
+              <div className="w-full flex justify-center items-center bg-gray-100  shadow    h-[65%]">
+                <Image
+                  width={150}
+                  height={150}
+                  alt="image-product"
+                  src={product.image}
+                  className=" rounded-lg"
+                ></Image>
+              </div>
+              <p className="font-bold leading-none ml-1 mt-4 text-[17px] ">
+                {product.name}
+              </p>
+              <p>{product.description}</p>
+              <h1 className="ml-1 mt-10 textOrange ">{product.price} </h1>
             </div>
-            <p className="ml-1 mt-4 text-[14px] text-gray-600">
-              {product.description}
-            </p>
-            <h1 className="ml-1 mt-10 textOrange font-bold">
-              {product.price}{" "}
-            </h1>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

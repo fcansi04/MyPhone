@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { useSession } from "next-auth/react";
 const admin = () => {
+  const { data: session } = useSession();
   const [Product, setProduct] = useState({
-    image:
-      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-240909_inline.jpg.large.jpg",
+    name: "",
+    image: "https://m.media-amazon.com/images/I/61nEkHocR8L._AC_SL1500_.jpg",
     description: "",
     price: "",
   });
@@ -20,6 +21,7 @@ const admin = () => {
       const response = await fetch("/api/product/new", {
         method: "POST",
         body: JSON.stringify({
+          name: Product.name,
           image: Product.image,
           description: Product.description,
           price: Product.price,
@@ -38,6 +40,16 @@ const admin = () => {
         alt="phone image  "
         src="/images/Apple-image.jpg"
       ></Image>
+      <label>
+        <h1>telefon ismi küçük detay</h1>
+        <textarea
+          value={Product.name}
+          onChange={(e) => {
+            setProduct({ ...Product, name: e.target.value });
+          }}
+          required
+        ></textarea>
+      </label>
       <label className="mt-10">
         <h1>açıklama</h1>
         <textarea
