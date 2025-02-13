@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 const admin = () => {
   const { data: session } = useSession();
   const [Product, setProduct] = useState({
@@ -78,6 +79,12 @@ const admin = () => {
       <button type="submit" className="w-20 mt-10 bgOrange">
         oluştur
       </button>
+      <Link
+        className="mt-10 bg-green-600 w-20 p-4 rounded-full"
+        href="/deleteProducts"
+      >
+        Delete
+      </Link>
     </form>
   );
 };

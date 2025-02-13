@@ -16,9 +16,9 @@ const Filter = ({ products, setProducts, allProducts, setAllProducts }) => {
       <div className="font-semibold text-xl mb-4 max-md:text-center">
         Product Categories
       </div>
-      <ul className="flex gap-4  text-lg flex-col max-md:flex-row bg-gray-100 rounded-lg p-5 h-68 justify-start max-md:justify-center">
-        <li className="">
-          <span className="font-bold max-md:hidden">{"->"}</span>
+      <ul className="flex gap-4  text-lg flex-col max-md:flex-row bg-gray-900 textOrangeOp rounded-lg p-5 h-68 justify-start max-md:justify-center font-semibold">
+        <li className="hover:text-xl">
+          <span className="font-bold max-md:hidden ">{"->"}</span>
           <button
             onClick={() => {
               setProducts(allProducts);
@@ -27,25 +27,25 @@ const Filter = ({ products, setProducts, allProducts, setAllProducts }) => {
             Show ALL
           </button>
         </li>
-        <li className="">
+        <li className="hover:text-xl">
           <span className="font-bold max-md:hidden">{"->"}</span>
           <button onClick={handleKategori} value="iphone">
             Apple
           </button>
         </li>
-        <li>
+        <li className="hover:text-xl">
           <span className="font-bold max-md:hidden">{"->"}</span>
           <button onClick={handleKategori} value="samsung">
             Samsung
           </button>
         </li>
-        <li>
+        <li className="hover:text-xl">
           <span className="font-bold max-md:hidden">{"->"}</span>
           <button onClick={handleKategori} value="xiaomi">
             Xiaomi
           </button>
         </li>{" "}
-        <li>
+        <li className="hover:text-xl">
           <span className="font-bold max-md:hidden">{"->"}</span>
           <button onClick={handleKategori} value="tablet">
             Tablet

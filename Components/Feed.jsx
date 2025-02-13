@@ -1,10 +1,7 @@
 "use client";
 import Filter from "./Filter";
-import ProductProvider from "./ProductProvider";
-import Head from "next/head";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Product from "@/models/product";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
@@ -56,10 +53,10 @@ const Feed = () => {
             <div
               key={product._id}
               product_id={product._id}
-              className=" relative w-[280px]  rounded-lg h-[380px] flex flex-col items-start justify-start cursor-pointer "
+              className=" relative w-[280px]  rounded-xl h-[30rem] flex flex-col items-start justify-start cursor-pointer shadow-md  "
               onClick={handleSingleProduct}
             >
-              <div className="w-full flex justify-center items-center bg-gray-100  shadow    h-[65%]">
+              <div className="w-full flex justify-center items-center bg-gray-100  shadow  h-[15rem]">
                 <Image
                   width={150}
                   height={150}
@@ -68,12 +65,19 @@ const Feed = () => {
                   className=" rounded-lg"
                 ></Image>
               </div>
-              <div className="w-full">
-                <p className="font-bold leading-none ml-1 mt-4 text-[17px] ">
+              <div className="w-full h-[15rem] p-2 ">
+                <p className="font-bold leading-none mt-4 text-[19px] h-[2rem] mb-2 ">
                   {product.name}
                 </p>
-                <p className="break-all">{product.description}</p>
-                <h1 className="ml-1 mt-10 textOrange ">{product.price} </h1>
+                <p className="break-all h-[4rem]">{product.description}</p>
+                <div className="flex items-end justify-between self-end">
+                  <h1 className="ml-1 mt-10 textOrangeOp font-semibold text-xl ">
+                    {product.price}{" "}
+                  </h1>
+                  <button className="bg-gray-900 p-2 rounded-md text-white">
+                    detaylı bilgi
+                  </button>
+                </div>
               </div>
             </div>
           );

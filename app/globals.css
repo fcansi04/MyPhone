@@ -6,6 +6,13 @@
   background-color: rgb(242, 122, 26);
 }
 
+.bgOrangeOp {
+  background-color: rgb(47, 181, 99);
+}
+.textOrangeOp {
+  color: rgb(47, 181, 99);
+}
+
 .textOrange {
   color: rgb(242, 122, 26);
 }

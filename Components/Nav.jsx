@@ -16,11 +16,14 @@ const Nav = () => {
   };
 
   return (
-    <section className="z-10 px-40 fixed top-0 bg-white h-20 pt-5 pb-5 box-content flex  items-center ">
+    <section className="bgOrangeOp z-10  fixed top-0 bg-white h-20 pt-5 pb-5 flex  items-center w-full justify-center max-sm:justify-between max-sm:px-5 ">
       <Link href="/" className="text-xl font-semibold mr-20 ">
         BelsaGSM
       </Link>
-      <form action="submit" className="xl:w-[40rem] relative">
+      <form
+        action="submit"
+        className="lg:w-[40rem] md:w-[30rem]  sm:w-[20rem] max-sm:hidden   relative"
+      >
         <input
           type="text"
           value={searchValue}
@@ -44,18 +47,19 @@ const Nav = () => {
               onClick={butonShowHandler}
             />
             <div
-              className={`absolute right-[130px] top-0 items-center bg-white shadow p-10 flex gap-4 flex-col ${
+              className={`absolute right-[130px] top-0 items-center bg-white shadow px-10 py-4 flex gap-4 flex-col ${
                 showButtons ? "" : "hidden"
               }`}
             >
               {" "}
+              <Link href="/account">My Account</Link>
               <Link href="/favoriler">Favorilerim</Link>
               <Link href="sepetim">Sepetim</Link>
               <button
                 onClick={() => {
                   signOut();
                 }}
-                className="bgOrange w-[120px] rounded-full p-2 hover:opacity-80"
+                className="bg-white hover:bg-black hover:text-white   w-[120px] rounded-full p-2 hover:opacity-80"
               >
                 çıkış yap
               </button>
@@ -63,7 +67,10 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            <Link className="bg-blue-400 py-2 px-4 rounded-full" href="/login">
+            <Link
+              className=" bg-white hover:bg-black hover:text-white py-2 px-4 rounded-full"
+              href="/login"
+            >
               Giriş Yap
             </Link>
           </>

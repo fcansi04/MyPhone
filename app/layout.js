@@ -12,9 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="tr">
       <body className="">
         <Provider>
-          <main className=" mx-auto max-w-[1300px] ">
+          <main className=" ">
             <Nav />
-            {children}
+            <div className=" mx-auto max-w-[1300px]">{children}</div>
           </main>
         </Provider>
       </body>
