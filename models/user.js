@@ -1,5 +1,4 @@
 import { Schema, model, models } from "mongoose";
-
 const UserSchema = new Schema({
   email: {
     type: String,
@@ -13,6 +12,12 @@ const UserSchema = new Schema({
   image: {
     type: String,
   },
+  sepet: [
+    {
+      product: { type: Schema.Types.ObjectId, ref: "products" },
+      quantity: { type: Number, default: 1 },
+    },
+  ],
 });
 
 const User = models?.User || model("User", UserSchema);

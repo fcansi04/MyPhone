@@ -56,13 +56,9 @@ const Feed = () => {
             <div
               key={product._id}
               product_id={product._id}
-              className=" relative w-[280px]  rounded-lg h-[380px] flex flex-col items-start justify-start  "
+              className=" relative w-[280px]  rounded-lg h-[380px] flex flex-col items-start justify-start cursor-pointer "
               onClick={handleSingleProduct}
             >
-              {" "}
-              <button className="absolute w-20 h-20">
-                <span className="material-symbols-outlined">favorite</span>
-              </button>
               <div className="w-full flex justify-center items-center bg-gray-100  shadow    h-[65%]">
                 <Image
                   width={150}
@@ -72,11 +68,13 @@ const Feed = () => {
                   className=" rounded-lg"
                 ></Image>
               </div>
-              <p className="font-bold leading-none ml-1 mt-4 text-[17px] ">
-                {product.name}
-              </p>
-              <p>{product.description}</p>
-              <h1 className="ml-1 mt-10 textOrange ">{product.price} </h1>
+              <div className="w-full">
+                <p className="font-bold leading-none ml-1 mt-4 text-[17px] ">
+                  {product.name}
+                </p>
+                <p className="break-all">{product.description}</p>
+                <h1 className="ml-1 mt-10 textOrange ">{product.price} </h1>
+              </div>
             </div>
           );
         })}
