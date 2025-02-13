@@ -42,7 +42,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="flex gap-40 mt-52">
+    <div className="flex gap-40 mt-52 max-md:flex-col">
       <Filter
         products={products}
         allProducts={allProducts}
@@ -50,7 +50,7 @@ const Feed = () => {
         setProducts={setProducts}
         className="w-[120px]  "
       ></Filter>
-      <div className="justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-10  gap-y-16 ">
+      <div className="justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-10  gap-y-24 mx-auto ">
         {products.map((product) => {
           return (
             <div
