@@ -3,11 +3,8 @@ import Filter from "@/Components/Filter";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 
 const Delete = () => {
-  const seachParams = useSearchParams();
-
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const router = useRouter();
