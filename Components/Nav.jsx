@@ -54,7 +54,7 @@ const Nav = () => {
               {" "}
               <Link href="/account">My Account</Link>
               <Link href="/favoriler">Favorilerim</Link>
-              <Link href="sepetim">Sepetim</Link>
+              <Link href="/sepetim">Sepetim</Link>
               <button
                 onClick={() => {
                   signOut();
