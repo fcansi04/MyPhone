@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-const SingleProduct = () => {
+import { Suspense } from "react";
+const ProductDetails = () => {
   const searchParams = useSearchParams();
   const productData = searchParams.get("data");
   const { data: session } = useSession();
@@ -64,6 +65,14 @@ const SingleProduct = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const SingleProduct = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductDetails />
+    </Suspense>
   );
 };
 
